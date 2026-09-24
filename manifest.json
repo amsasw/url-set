@@ -1,10 +1,17 @@
 {
   "manifest_version": 3,
   "name": "URL Path Recorder",
-  "version": "0.4.0",
-  "description": "锁定一个标签页，只记录该标签页的 URL 变化和时间。",
+  "version": "0.5.0",
+  "description": "使用 GitHub Pages 作为界面，锁定一个标签页并记录其 URL 变化和时间。",
   "permissions": ["storage", "tabs", "webRequest", "webNavigation"],
   "host_permissions": ["<all_urls>"],
   "background": {"service_worker": "background.js"},
-  "action": {"default_title": "打开 URL Path Recorder", "default_popup": "popup.html"}
+  "action": {"default_title": "打开 URL Path Recorder"},
+  "content_scripts": [
+    {
+      "matches": ["https://amsasw.github.io/url-set/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start"
+    }
+  ]
 }
