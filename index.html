@@ -1,57 +1,23 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>URL Path Recorder</title>
-  <link rel="stylesheet" href="./style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>URL Path Recorder</title>
+<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="wrap">
-    <section class="card">
-      <header>
-        <div>
-          <h1>URL Path Recorder</h1>
-          <p>锁定一个标签页，只记录 URL 变化和时间</p>
-        </div>
-        <span id="connection" class="badge offline">未连接扩展</span>
-      </header>
-
-      <div class="installbar">
-        <div>
-          <strong>还没安装扩展？</strong>
-          <span>下载后解压，在 Edge 的扩展管理页中加载解压缩目录。</span>
-        </div>
-        <a class="download" href="https://github.com/amsasw/url-set/archive/refs/heads/main.zip">下载 Edge 扩展 ZIP</a>
-      </div>
-
-      <div class="controls">
-        <label for="startUrl">起始锁定网址</label>
-        <div class="row">
-          <input id="startUrl" value="https://github.com" placeholder="https://github.com">
-          <button id="start">开始记录</button>
-          <button id="stop" class="secondary">停止</button>
-        </div>
-        <p class="hint">需要安装 URL Path Recorder 扩展。开始后会新开并锁定一个标签页，后续跨域跳转也会继续记录。</p>
-      </div>
-
-      <div class="statusbar">
-        <span><i id="dot" class="dot"></i><span id="state">等待连接扩展</span></span>
-        <span id="count">0 条记录</span>
-      </div>
-
-      <main id="list">
-        <div class="empty">暂无记录</div>
-      </main>
-
-      <footer>
-        <button id="copy" class="secondary">复制全部</button>
-        <button id="export" class="secondary">导出 TXT</button>
-        <button id="clear" class="danger">清空</button>
-      </footer>
-    </section>
-  </div>
-
-  <script src="./app.js"></script>
-</body>
-</html>
+<div class="wrap"><section class="card">
+<header><div><h1>URL Path Recorder</h1><p>多标签页监控 · 编号 001-100</p></div><span id="connection" class="badge offline">未连接扩展</span></header>
+<div class="installbar"><a class="download" href="https://github.com/amsasw/url-set/archive/refs/heads/main.zip">下载 Edge 扩展 ZIP</a></div>
+<div class="controls">
+<label>监控编号</label>
+<select id="monitorId"></select>
+<label>起始网址</label>
+<div class="row"><input id="startUrl" value="https://github.com"><button id="start">开始监控</button><button id="stop" class="secondary">停止全部</button></div>
+</div>
+<div class="statusbar"><span><i id="dot" class="dot"></i><span id="state">等待连接</span></span><span id="count">0 条记录</span></div>
+<main id="list"><div class="empty">暂无监控</div></main>
+<footer><button id="clear" class="danger">清空</button></footer>
+</section></div>
+<script src="./app.js"></script>
+</body></html>
