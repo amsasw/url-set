@@ -1,0 +1,49 @@
+:root{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+  color:#111827;background:#f4f6fa;font-synthesis:none
+}
+*{box-sizing:border-box}
+body{margin:0;min-width:320px}
+button,input,select{font:inherit}
+button,a{transition:opacity .15s ease,transform .15s ease,background .15s ease}
+button:active,a:active{transform:translateY(1px)}
+.shell{max-width:1180px;margin:38px auto;padding:0 20px 48px}
+.topbar,.installbar,.create-panel,.toolbar,.monitor-card,.diagnostics,.warning{background:#fff;border:1px solid #e5e7eb}
+.topbar{border-radius:18px 18px 0 0;padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:0}
+h1{margin:0 0 6px;font-size:24px;letter-spacing:-.02em}
+.topbar p{margin:0;color:#6b7280;font-size:13px}
+.version-stack{display:flex;align-items:flex-end;flex-direction:column;gap:7px}
+.badge,.version-badge{border-radius:999px;padding:6px 10px;font-size:12px;white-space:nowrap}
+.badge.offline{background:#f3f4f6;color:#6b7280}.badge.online{background:#dcfce7;color:#166534}.badge.warn{background:#fef3c7;color:#92400e}
+.version-badge{background:#f8fafc;color:#64748b;border:1px solid #e2e8f0}
+.warning{padding:12px 28px;background:#fff7ed;border-color:#fed7aa;color:#9a3412;font-size:13px}
+.hidden{display:none!important}
+.installbar{padding:16px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:0}
+.installbar>div:first-child{display:flex;flex-direction:column;gap:3px}.installbar strong{font-size:13px}.installbar span{font-size:12px;color:#6b7280}
+.install-actions{display:flex;gap:8px;align-items:center}
+.download,.link-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:650;white-space:nowrap}
+.download{background:#111827;color:#fff}.link-button{background:#f3f4f6;color:#111827}.download:hover,.link-button:hover{opacity:.86}
+.create-panel{padding:20px 28px;display:grid;grid-template-columns:130px minmax(180px,240px) minmax(300px,1fr) auto;gap:14px;align-items:end;border-bottom:0}
+.field{min-width:0}.field label{display:block;margin-bottom:7px;font-size:12px;font-weight:700;color:#374151}
+input,select{width:100%;border:1px solid #d1d5db;border-radius:10px;padding:11px 12px;background:#fff;color:#111827;outline:none}
+input:focus,select:focus{border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.06)}
+button{border:0;border-radius:10px;padding:11px 14px;font-weight:650;cursor:pointer;background:#111827;color:#fff}
+button:hover{opacity:.88}button:disabled{opacity:.42;cursor:not-allowed;transform:none}
+button.secondary{background:#f3f4f6;color:#111827}button.danger{background:#fff;color:#b91c1c;border:1px solid #fecaca}button.small{padding:7px 10px;border-radius:8px;font-size:12px}
+.toolbar{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:0;background:#fafafa}
+.toolbar-status{display:flex;gap:18px;font-size:13px;white-space:nowrap}.toolbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.filter{width:240px;padding:9px 11px;font-size:13px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#9ca3af;margin-right:7px}.dot.on{background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.1)}
+.monitor-list{padding:20px 0}
+.monitor-card{border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 5px 18px rgba(15,23,42,.035)}
+.monitor-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;background:#fafafa;border-bottom:1px solid #eef0f4}
+.monitor-title{display:flex;align-items:center;gap:10px;min-width:0;flex-wrap:wrap}.monitor-id{font-size:16px}.monitor-name{font-size:14px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:440px}.monitor-status{font-size:12px;font-weight:700}.monitor-status.running{color:#15803d}.monitor-status.stopped{color:#6b7280}.monitor-count{font-size:12px;color:#6b7280;white-space:nowrap}
+.monitor-start-url{padding:10px 16px;border-bottom:1px solid #eef0f4;font:12px Consolas,"SFMono-Regular",monospace;color:#4b5563;word-break:break-all}
+.monitor-actions{padding:10px 16px;display:flex;gap:7px;flex-wrap:wrap;background:#fff}
+.records{border-top:1px solid #eef0f4;max-height:430px;overflow:auto;background:#fcfcfd}
+.record-row{display:grid;grid-template-columns:205px minmax(0,1fr);gap:14px;padding:11px 16px;border-bottom:1px solid #f0f1f4}.record-row:last-child{border-bottom:0}.record-meta{display:flex;flex-direction:column;align-items:flex-start;gap:4px}.record-time{font:11px Consolas,monospace;color:#64748b}.delta{font:11px Consolas,monospace;color:#0f766e}.repeat-pill{font-size:10px;background:#e2e8f0;color:#475569;padding:2px 6px;border-radius:999px}
+.record-url-wrap{min-width:0}.record-url{font:12px Consolas,"SFMono-Regular",monospace;word-break:break-all;user-select:text;color:#111827;line-height:1.55}.auth-tag{display:inline-block;font-size:10px;font-weight:700;color:#7c3aed;background:#ede9fe;border-radius:999px;padding:2px 6px;margin-bottom:5px}.repeat-details{margin-top:6px;color:#64748b;font:11px Consolas,monospace}.repeat-details summary{cursor:pointer;color:#475569;margin-bottom:4px}.repeat-details div{padding:2px 0}
+.records-empty,.empty{text-align:center;color:#9ca3af;padding:38px 16px;font-size:13px}
+.diagnostics{border-radius:14px;padding:0 18px}.diagnostics summary{cursor:pointer;padding:14px 0;font-size:13px;font-weight:700}.diagnostics-grid{display:grid;grid-template-columns:160px 1fr;gap:8px 16px;padding:0 0 18px;font-size:12px}.diagnostics-grid span{color:#6b7280}.diagnostics-grid strong{font-weight:600;word-break:break-all}
+@media(max-width:900px){.create-panel{grid-template-columns:1fr 1fr}.url-field{grid-column:1/-1}.create-actions{grid-column:1/-1}.create-actions button{width:100%}.toolbar{align-items:flex-start;flex-direction:column}.toolbar-actions{width:100%;justify-content:flex-start}.filter{width:100%}}
+@media(max-width:640px){.shell{margin:14px auto;padding:0 10px 32px}.topbar{padding:20px;align-items:flex-start;flex-direction:column}.version-stack{align-items:flex-start}.installbar{padding:14px 20px;align-items:stretch;flex-direction:column}.install-actions{flex-direction:column;align-items:stretch}.create-panel{padding:18px 20px;grid-template-columns:1fr}.url-field,.create-actions{grid-column:auto}.toolbar{padding:13px 20px}.toolbar-status{flex-direction:column;gap:6px}.monitor-head{align-items:flex-start;flex-direction:column}.monitor-name{max-width:240px}.record-row{grid-template-columns:1fr;gap:6px}.diagnostics-grid{grid-template-columns:1fr}}
