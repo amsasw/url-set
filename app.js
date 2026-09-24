@@ -74,7 +74,9 @@ function monitorCard(m){
   const id=document.createElement('strong');id.className='monitor-id';id.textContent=m.id;
   const status=document.createElement('span');status.className='monitor-status '+(m.running?'running':'stopped');status.textContent=m.running?'● 监控中':'● 已停止';
   title.append(id,status);
-  const count=document.createElement('span');count.className='monitor-count';count.textContent=(m.records||[]).length+' 条记录';
+  const count=document.createElement('span');count.className='monitor-count';
+  const tabCount=Array.isArray(m.tabIds)?m.tabIds.length:(Number.isInteger(m.tabId)?1:0);
+  count.textContent=(m.records||[]).length+' 条记录 · '+tabCount+' 个关联标签页';
   head.append(title,count);
 
   const start=document.createElement('div');start.className='monitor-start-url';start.textContent=m.startUrl||'';
