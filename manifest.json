@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "URL Path Recorder",
-  "version": "0.5.0",
-  "description": "使用 GitHub Pages 作为界面，锁定一个标签页并记录其 URL 变化和时间。",
+  "version": "0.6.3",
+  "description": "使用 GitHub Pages 作为界面，按编号监控标签页及其 OAuth/验证子标签页的 URL 变化和时间。",
   "permissions": ["storage", "tabs", "webRequest", "webNavigation"],
   "host_permissions": ["<all_urls>"],
   "background": {"service_worker": "background.js"},
