@@ -1,0 +1,51 @@
+name: Build Edge Extension Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "extension/**"
+      - ".github/workflows/release-extension.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: edge-extension-release
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Build ZIP
+        run: |
+          cd extension
+          zip -r ../URL-Path-Recorder-Edge.zip . -x "*.DS_Store"
+
+      - name: Publish rolling release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f edge-latest "$GITHUB_SHA"
+          git push --force origin refs/tags/edge-latest
+
+          if gh release view edge-latest >/dev/null 2>&1; then
+            gh release upload edge-latest URL-Path-Recorder-Edge.zip --clobber
+            gh release edit edge-latest \
+              --title "URL Path Recorder - Edge Latest" \
+              --notes "自动构建的最新版 Edge/Chromium 扩展安装包。解压后在 edge://extensions/ 中选择加载解压缩的扩展。"
+          else
+            gh release create edge-latest URL-Path-Recorder-Edge.zip \
+              --title "URL Path Recorder - Edge Latest" \
+              --notes "自动构建的最新版 Edge/Chromium 扩展安装包。解压后在 edge://extensions/ 中选择加载解压缩的扩展。"
+          fi
