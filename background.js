@@ -167,13 +167,20 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(d => {
 // 关键：OAuth / 登录 / 验证流程如果创建新标签页或窗口，
 // 自动把新 tabId 归到来源监控编号下。
 chrome.webNavigation.onCreatedNavigationTarget.addListener(details => {
-  attachRelatedTab(details.sourceTabId, details.tabId);
+  attachRelatedTab(details.sourceTabId, details.tabId).then(() => {
+    // 目标标签页的第一个 OAuth/验证 URL 可能在关联建立前就开始加载，
+    // 因此关联完成后立即补记事件自带的 URL。
+    if (details.url) add(details.url, details.tabId);
+  });
 });
 
 // 额外覆盖 window.open / target=_blank 等带 openerTabId 的情况。
 chrome.tabs.onCreated.addListener(tab => {
   if (Number.isInteger(tab.openerTabId)) {
-    attachRelatedTab(tab.openerTabId, tab.id);
+    attachRelatedTab(tab.openerTabId, tab.id).then(() => {
+      const firstUrl = tab.pendingUrl || tab.url;
+      if (firstUrl) add(firstUrl, tab.id);
+    });
   }
 });
 
