@@ -35,3 +35,19 @@ main{padding:5px 28px;max-height:58vh;overflow:auto}
 .empty{text-align:center;color:#9ca3af;padding:55px 0}
 footer{padding:16px 28px;border-top:1px solid #edf0f4;display:flex;gap:10px;justify-content:flex-end}
 @media(max-width:720px){.installbar{align-items:stretch;flex-direction:column}.download{width:100%}.row{flex-direction:column}.item{grid-template-columns:1fr;gap:5px}.statusbar{gap:10px;flex-direction:column}}
+.monitor-card{border:1px solid #e5e7eb;border-radius:14px;margin-bottom:16px;overflow:hidden;background:#fff}
+.monitor-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;background:#fafafa;border-bottom:1px solid #eef0f4}
+.monitor-title{display:flex;align-items:center;gap:12px}
+.monitor-id{font-size:16px}
+.monitor-status{font-size:12px;font-weight:600}
+.monitor-status.running{color:#15803d}
+.monitor-status.stopped{color:#6b7280}
+.monitor-count{font-size:12px;color:#6b7280}
+.monitor-start-url{padding:11px 16px;border-bottom:1px solid #eef0f4;font:12px Consolas,monospace;color:#4b5563;word-break:break-all}
+.records{max-height:320px;overflow:auto}
+.record-row{display:grid;grid-template-columns:190px minmax(0,1fr);gap:16px;padding:10px 16px;border-bottom:1px solid #f2f3f5}
+.record-row:last-child{border-bottom:0}
+.record-time{font:12px Consolas,monospace;color:#6b7280;white-space:nowrap}
+.record-url{font:12px Consolas,monospace;word-break:break-all;color:#111827;user-select:text}
+.records-empty{padding:18px 16px;color:#9ca3af;font-size:13px}
+@media(max-width:720px){.record-row{grid-template-columns:1fr;gap:4px}}
