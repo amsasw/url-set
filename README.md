@@ -1,50 +1,78 @@
 # URL Path Recorder
 
-一个面向 Microsoft Edge / Chromium 的轻量网址路径记录扩展。
+一个面向 Microsoft Edge / Chromium 的轻量 URL 跳转记录工具。
 
-## 当前结构
+- Web UI：<https://amsasw.github.io/url-set/>
+- 扩展：负责浏览器权限、URL 捕获、关联标签页跟踪和本地存储
+- Pages：负责展示、筛选、折叠、诊断和导出
 
-现在使用固定网页作为界面：
+## v0.7 主要功能
 
-- 功能页：`https://amsasw.github.io/url-set/`
-- 扩展负责浏览器权限、标签页锁定、URL 监听和本地存储
-- GitHub Pages 负责界面显示和操作
+- 001-100 多任务监控
+- 每个任务可自定义名称
+- 一个任务可关联主标签页、OAuth/SSO 新标签页和验证弹窗
+- 每个任务独立停止、清空、删除和改名
+- URL 记录实时显示，并保存在 `chrome.storage.local`
+- 连续相同 URL 只在界面折叠，原始记录不会被删除
+- 显示相邻记录的毫秒/秒级时间差
+- OAuth / login / callback / verify / SSO 地址自动标记“认证”
+- 默认导出脱敏 URL，可单独确认后导出原始 URL
+- 隐藏式诊断面板显示 Core/Web/API 版本、任务数、关联标签页数等
+- Web UI 与扩展 Core 独立版本，网页更新通常无需重新安装扩展
 
-扩展图标被点击后，会直接打开固定功能页。
+## 目录结构
 
-## 功能
+```text
+url-set/
+├─ extension/
+│  ├─ manifest.json
+│  ├─ background.js
+│  ├─ bridge.js
+│  └─ README.md
+├─ web/
+│  ├─ index.html
+│  ├─ app.js
+│  ├─ style.css
+│  └─ .nojekyll
+└─ .github/workflows/
+   ├─ pages.yml
+   └─ release-extension.yml
+```
 
-- 输入起始网址并打开一个锁定标签页
-- 只记录该标签页后续的 URL 变化与时间
-- 可捕获普通页面导航、HTTP 重定向，以及 History API 导航
-- 页面跳转到其他域名后，只要仍在同一个锁定标签页，也会继续记录
-- 所有记录保存在浏览器本地
-- 支持复制全部记录和导出 TXT
-- 不需要服务器，也不需要打开 DevTools
+## 安装扩展
 
-## 安装
+推荐从仓库 Releases 下载 `URL-Path-Recorder-Edge.zip`。
 
-1. 下载或克隆本仓库。
-2. 在 Edge 打开 `edge://extensions/`。
+1. 解压 ZIP。
+2. Edge 打开 `edge://extensions/`。
 3. 开启“开发人员模式”。
 4. 点击“加载解压缩的扩展”。
-5. 选择仓库目录。
-6. 打开 `https://amsasw.github.io/url-set/`。
+5. 选择解压后的目录（里面应直接看到 `manifest.json`）。
+6. 打开 <https://amsasw.github.io/url-set/>。
 
-页面右上角显示“扩展已连接”后即可正常使用。
+开发时也可以直接加载仓库里的 `extension/` 目录。
 
 ## 使用
 
-1. 在固定功能页输入起始网址，例如 `https://github.com`。
-2. 点击“开始记录”。
-3. 扩展会新开一个标签页并锁定它。
-4. 该标签页之后发生的 URL 变化都会按时间记录。
-5. 回到功能页即可实时查看记录。
+1. 选择编号 001-100。
+2. 输入可选名称和起始 URL。
+3. 点击“开始 / 重新启动”。
+4. 该任务会跟踪其主标签页及由它打开的关联 OAuth/验证标签页。
+5. 回到 Pages 页面查看实时记录。
 
-> 当前设计优先保证不漏掉快速跳转，因此同一 URL 在不同时间再次触发时可能会保留为多条记录。
+停止后的任务再次使用相同编号启动时，会保留之前的记录并创建新的监控标签页。
+
+## 隐私与导出
+
+记录只保存在扩展本地存储中。OAuth URL 可能包含 `code`、`token`、`state` 等敏感参数，因此默认提供“复制脱敏”和“导出脱敏”；导出原始 URL 前会再次确认。
+
+## 发布
+
+- `web/` 由 GitHub Pages workflow 自动部署。
+- `extension/` 有变化时会自动构建 `URL-Path-Recorder-Edge.zip`，并更新 `edge-latest` Release。
 
 ## 备份
 
-切换到 Pages 界面之前的版本保存在：
+v0.7 全量优化前的主分支已备份到：
 
-`backup-v0.4-before-pages`
+`backup-before-v0.7-full-optimization`
