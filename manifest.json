@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "URL Path Recorder",
+  "version": "0.4.0",
+  "description": "锁定一个标签页，只记录该标签页的 URL 变化和时间。",
+  "permissions": ["storage", "tabs", "webRequest", "webNavigation"],
+  "host_permissions": ["<all_urls>"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_title": "打开 URL Path Recorder", "default_popup": "popup.html"}
+}
